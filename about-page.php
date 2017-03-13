@@ -289,7 +289,7 @@ class Puro_Extras_About_Page {
 					<?php echo esc_html__( 'Proudly Created By', 'puro' ); ?>
 				</p>
 				<a href="https://purothemes.com/" target="_blank">
-					<img src="<?php echo get_template_directory_uri() ?>/inc/extras/about/css/images/puro.png" />
+					<img src="<?php echo get_template_directory_uri() ?>/inc/extras/css/images/puro.png" />
 				</a>
 			</div>
 		</div>
