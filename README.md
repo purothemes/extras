@@ -1,0 +1,2 @@
+# Extras
+Puro theme extras.
