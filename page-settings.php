@@ -79,31 +79,53 @@ class Puro_Extras_Page_Settings {
 		return apply_filters( 'puro_page_settings_defaults', array(), $type, $id );
 	}
 
-	static function get_current_page() {
+	static function get_current_page(){
 		global $wp_query;
 
-		$object = get_queried_object();
-		if ( ! empty( $object ) ) {
-			switch( get_class( $object ) ) {
-				case 'WP_Term':
-					$type = 'taxonomy';
-					$id = $object->taxonomy;
-					break;
-
-				case 'WP_Post':
-					$type = 'post';
-					$id = $object->ID;
-					break;
-
-				case 'WP_User':
-					$type = 'template';
-					$id = 'author';
-					break;
-			}
+		if( $wp_query->is_home() ) {
+			$type = 'template';
+			$id = 'home';
+		}
+		else if( $wp_query->is_search() ) {
+			$type = 'template';
+			$id = 'search';
+		}
+		else if( $wp_query->is_404() ) {
+			$type = 'template';
+			$id = '404';
+		}
+		else if( $wp_query->is_date() ) {
+			$type = 'template';
+			$id = 'date';
+		}
+		else if( $wp_query->is_post_type_archive() ) {
+			$type = 'archive';
+			$id = $wp_query->get( 'post_type' );
 		}
 		else {
-			$type = 'template';
-			$id = 'default';
+			$object = get_queried_object();
+			if( !empty( $object ) ) {
+				switch( get_class( $object ) ) {
+					case 'WP_Term':
+						$type = 'taxonomy';
+						$id = $object->taxonomy;
+						break;
+
+					case 'WP_Post':
+						$type = 'post';
+						$id = $object->ID;
+						break;
+
+					case 'WP_User':
+						$type = 'template';
+						$id = 'author';
+						break;
+				}
+			}
+			else {
+				$type = 'template';
+				$id = 'default';
+			}
 		}
 
 		return array( $type, $id );
