@@ -133,7 +133,7 @@ class Puro_Extras_About_Page {
 			'video_thumbnail' => array(
 				$theme->get_screenshot()
 			),
-			'video_url' => add_query_arg( 'autoplay', 1, $theme->get( 'ThemeURI' ) ),
+			'video_url' => '',
 			'video_description' => false,
 			'newsletter_url' => 'https://purothemes.com/#newsletter',
 			'tour_url' => '',
