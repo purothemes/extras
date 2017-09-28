@@ -42,7 +42,7 @@ class Puro_Extras_About_Page {
 				<?php echo esc_html( sprintf( __( 'Thanks for choosing %s!', 'puro' ), $theme->get( 'Name' ) ) ); ?>
 				<?php
 				printf(
-					esc_html__( 'You can learn more about it %shere%s, or head straight to the %scustomizer%s to start setting it up.', 'puro' ),
+					esc_html__( 'You can learn more about it %1$shere%2$s, or head straight to the %3$scustomizer%4$s to start setting it up.', 'puro' ),
 					'<a href="' . admin_url( 'themes.php?page=puro-theme-about' ) . '">',
 					'</a>',
 					'<a href="' . admin_url( 'customize.php' ) . '">',
