@@ -181,7 +181,7 @@ class Puro_Extras_About_Page {
 					</li>
 				<?php endif; ?>
 
-				<?php if ( ! empty( $about[ 'premium_url' ] ) ) : ?>
+				<?php if ( ! empty( $about[ 'premium_url' ] ) && ! defined( 'PURO_IS_PREMIUM' ) ) : ?>
 					<li class="about-highlight">
 						<a href="<?php echo esc_url( $about[ 'premium_url' ] ) ?>" class="about-button-updates" target="_blank">
 							<span class="dashicons dashicons-arrow-up-alt"></span>
