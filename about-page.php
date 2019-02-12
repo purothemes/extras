@@ -19,7 +19,7 @@ class Puro_Extras_About_Page {
 
 	static function single() {
 		static $single;
-		if( empty( $single ) ) {
+		if ( empty( $single ) ) {
 			$single = new self();
 		}
 		return $single;
@@ -146,7 +146,7 @@ class Puro_Extras_About_Page {
 		<div class="wrap" id="puro-about-page">
 			<ul class="top-area-tabs">
 
-				<?php if( !empty( $about[ 'tour_url' ] ) ) : ?>
+				<?php if ( ! empty( $about[ 'tour_url' ] ) ) : ?>
 					<li>
 						<a href="<?php echo esc_url( $about[ 'tour_url' ] ) ?>" class="about-button-tour" target="_blank">
 							<?php esc_html_e( 'Take a Tour', 'puro' ) ?>
@@ -163,7 +163,7 @@ class Puro_Extras_About_Page {
 					</li>
 				<?php endif; ?>
 
-				<?php if( !empty( $about[ 'documentation_url' ] ) ) : ?>
+				<?php if ( ! empty( $about[ 'documentation_url' ] ) ) : ?>
 					<li>
 						<a href="<?php echo esc_url( $about[ 'documentation_url' ] ) ?>" class="about-button-docs" target="_blank">
 							<span class="dashicons dashicons-sos"></span>
@@ -172,7 +172,7 @@ class Puro_Extras_About_Page {
 					</li>
 				<?php endif; ?>
 
-				<?php if( !empty( $about[ 'review_url' ] ) ) : ?>
+				<?php if ( ! empty( $about[ 'review_url' ] ) ) : ?>
 					<li>
 						<a href="<?php echo esc_url( $about[ 'review_url' ] ) ?>" class="about-button-updates" target="_blank">
 							<span class="dashicons dashicons-star-filled"></span>
@@ -199,10 +199,10 @@ class Puro_Extras_About_Page {
 							<img
 								src="<?php echo esc_url( $about[ 'title_image' ] ) ?>"
 								title="<?php echo esc_attr( $about[ 'title' ] ) ?>"
-						        <?php if( ! empty( $about[ 'title_image_2x' ] ) ) : ?>
-						            srcset="<?php echo esc_url( $about[ 'title_image_2x' ] ) ?> 2x"
-						        <?php endif ?>
-						        />
+								<?php if( ! empty( $about[ 'title_image_2x' ] ) ) : ?>
+									srcset="<?php echo esc_url( $about[ 'title_image_2x' ] ) ?> 2x"
+								<?php endif ?>
+							/>
 							<div class="version"><?php echo esc_html( $about['version'] ) ?></div>
 						</div>
 					<?php else : ?>
@@ -218,9 +218,9 @@ class Puro_Extras_About_Page {
 				<div class="about-video">
 					<div class="about-container">
 						<a href="<?php echo esc_url( $about[ 'video_url' ] ) ?>" class="about-play-video" target="_blank">
-							<?php if( empty( $about[ 'no_video' ] ) ) : ?>
+							<?php if ( empty( $about[ 'no_video' ] ) ) : ?>
 								<svg version="1.1" id="play" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-								     viewBox="0 0 540 320.6" style="enable-background:new 0 0 540 320.6;" xml:space="preserve">
+									viewBox="0 0 540 320.6" style="enable-background:new 0 0 540 320.6;" xml:space="preserve">
 									<path class="st0" d="M511,0H29C13,0,0,13,0,29v262.6c0,16,13,29,29,29h482c16,0,29-13,29-29V29C540,13,527,0,511,0z"/>
 									<path class="st1" d="M326.9,147.3c4.2,2.6,6.9,7.6,6.9,13c0,5.4-2.7,10.3-7.2,13.2l-94.9,69.9c-2.6,2.2-6.1,3.5-9.8,3.5
 									c-8.7,0-15.7-7-15.7-15.7V89.4c0-8.6,7-15.7,15.7-15.7c3.7,0,7.3,1.3,10.1,3.7L326.9,147.3z"/>
