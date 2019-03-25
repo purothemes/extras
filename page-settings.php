@@ -74,6 +74,9 @@ class Puro_Extras_Page_Settings {
 	function add_page_settings_support() {
 		add_post_type_support( 'page', 'puro-page-settings' );
 		add_post_type_support( 'post', 'puro-page-settings' );
+		if ( post_type_exists( 'jetpack-portfolio' ) ) {
+			add_post_type_support( 'jetpack-portfolio', 'puro-page-settings' );
+		}
 	}
 
 	function get_settings_defaults( $type, $id ) {
