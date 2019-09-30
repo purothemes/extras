@@ -129,7 +129,7 @@ class Puro_Extras_About_Page {
 			),
 			'video_url' => '',
 			'video_description' => false,
-			'newsletter_url' => 'https://purothemes.com/#newsletter',
+			'newsletter_url' => '',
 			'tour_url' => '',
 			'documentation_url' => '',
 			'premium_url' => '',
