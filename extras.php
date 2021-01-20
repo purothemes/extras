@@ -1,4 +1,4 @@
-<?php	
+<?php
 
 /**
  * Load all the extra components.
