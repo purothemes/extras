@@ -17,9 +17,9 @@ class Puro_Extras_Page_Settings {
 
 		add_action( 'init', array( $this, 'add_page_settings_support' ) );
 
-		// All the meta box stuff.
-		add_action( 'add_meta_boxes', array($this, 'add_meta_box'), 10 );
-		add_action( 'save_post', array($this, 'save_post') );
+		// Meta box.
+		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ), 10 );
+		add_action( 'save_post', array( $this, 'save_post' ) );
 	}
 
 	/**
@@ -29,7 +29,7 @@ class Puro_Extras_Page_Settings {
 	 */
 	static function single() {
 		static $single;
-		if( empty($single) ) {
+		if ( empty( $single ) ) {
 			$single = new self();
 		}
 
@@ -83,33 +83,33 @@ class Puro_Extras_Page_Settings {
 		return apply_filters( 'puro_page_settings_defaults', array(), $type, $id );
 	}
 
-	static function get_current_page(){
+	static function get_current_page() {
 		global $wp_query;
 
-		if( $wp_query->is_home() ) {
+		if ( $wp_query->is_home() ) {
 			$type = 'template';
 			$id = 'home';
 		}
-		else if( $wp_query->is_search() ) {
+		elseif ( $wp_query->is_search() ) {
 			$type = 'template';
 			$id = 'search';
 		}
-		else if( $wp_query->is_404() ) {
+		elseif ( $wp_query->is_404() ) {
 			$type = 'template';
 			$id = '404';
 		}
-		else if( $wp_query->is_date() ) {
+		elseif ( $wp_query->is_date() ) {
 			$type = 'template';
 			$id = 'date';
 		}
-		else if( $wp_query->is_post_type_archive() ) {
+		else if ( $wp_query->is_post_type_archive() ) {
 			$type = 'archive';
 			$id = $wp_query->get( 'post_type' );
 		}
 		else {
 			$object = get_queried_object();
-			if( !empty( $object ) ) {
-				switch( get_class( $object ) ) {
+			if ( ! empty( $object ) ) {
+				switch ( get_class( $object ) ) {
 					case 'WP_Term':
 						$type = 'taxonomy';
 						$id = $object->taxonomy;
@@ -146,7 +146,7 @@ class Puro_Extras_Page_Settings {
 	function get_settings_values( $type, $id ) {
 		$defaults = $this->get_settings_defaults( $type, $id );
 
-		switch( $type ) {
+		switch ( $type ) {
 			case 'post':
 				$values = get_post_meta( $id, 'puro_page_settings', true );
 				break;
@@ -189,18 +189,18 @@ class Puro_Extras_Page_Settings {
 
 		do_action( 'puro_settings_before_page_settings_meta_box', $post );
 
-		foreach( $settings as $id => $field ) {
-			if( empty($values[$id]) ) $values[$id] = false;
+		foreach ( $settings as $id => $field ) {
+			if ( empty( $values[ $id ] ) ) $values[ $id ] = false;
 
 			?><p><label for="puro-page-settings-<?php echo esc_attr( $id ) ?>"><strong><?php echo esc_html( $field['label'] ) ?></strong></label></p><?php
 
-			switch( $field['type'] ) {
+			switch ( $field['type'] ) {
 
 				case 'select' :
 					?>
 					<select name="puro_page_settings[<?php echo esc_attr( $id ) ?>]" id="puro-page-settings-<?php echo esc_attr( $id ) ?>">
-						<?php foreach( $field['options'] as $v => $n ) : ?>
-							<option value="<?php echo esc_attr( $v ) ?>" <?php selected( $values[$id], $v ) ?>><?php echo esc_html( $n ) ?></option>
+						<?php foreach ( $field['options'] as $v => $n ) : ?>
+							<option value="<?php echo esc_attr( $v ) ?>" <?php selected( $values[ $id ], $v ) ?>><?php echo esc_html( $n ) ?></option>
 						<?php endforeach; ?>
 					</select>
 					<?php
@@ -209,13 +209,13 @@ class Puro_Extras_Page_Settings {
 
 				case 'checkbox' :
 					?>
-					<label><input type="checkbox" name="puro_page_settings[<?php echo esc_attr( $id ) ?>]" <?php checked( $values[$id] ) ?> /><?php echo esc_html($field['checkbox_label']) ?></label>
+					<label><input type="checkbox" name="puro_page_settings[<?php echo esc_attr( $id ) ?>]" <?php checked( $values[ $id ] ) ?> /><?php echo esc_html( $field['checkbox_label'] ) ?></label>
 					<?php
 					break;
 
 				case 'text' :
 				default :
-					?><input type="text" name="puro_page_settings[<?php echo esc_attr( $id ) ?>]" id="puro-page-settings-<?php echo esc_attr( $id ) ?>" value="<?php echo esc_attr( $values[$id] ) ?>" /><?php
+					?><input type="text" name="puro_page_settings[<?php echo esc_attr( $id ) ?>]" id="puro-page-settings-<?php echo esc_attr( $id ) ?>" value="<?php echo esc_attr( $values[ $id ] ) ?>" /><?php
 					break;
 
 			}
@@ -242,21 +242,21 @@ class Puro_Extras_Page_Settings {
 
 		$settings = stripslashes_deep( $_POST['puro_page_settings'] );
 
-		foreach( $this->get_settings( 'post', $post_id ) as $id => $field ) {
-			switch( $field['type'] ) {
-				case 'select' :
-					if ( ! in_array( $settings[$id], array_keys( $field['options'] ) ) ) {
-						$settings[$id] = isset($field['default']) ? $field['default'] : null;
+		foreach ( $this->get_settings( 'post', $post_id ) as $id => $field ) {
+			switch ( $field['type'] ) {
+				case 'select':
+					if ( ! in_array( $settings[ $id ], array_keys( $field['options'] ) ) ) {
+						$settings[ $id ] = isset( $field['default'] ) ? $field['default'] : null;
 					}
 					break;
 
-				case 'checkbox' :
-					$settings[$id] = ! empty( $settings[$id] );
+				case 'checkbox':
+					$settings[ $id ] = ! empty( $settings[ $id ] );
 					break;
 
-				case 'text' :
+				case 'text':
 				default :
-					$settings[$id] = sanitize_text_field( $settings[$id] );
+					$settings[ $id ] = sanitize_text_field( $settings[ $id ] );
 					break;
 			}
 		}
